@@ -1,7 +1,6 @@
 import Part from "./components/Part";
 
 const Content = (props) => {
-    console.log(props)
     return ( 
         <>
         <Part
