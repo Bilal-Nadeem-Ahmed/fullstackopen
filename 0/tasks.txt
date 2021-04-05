@@ -1,0 +1,45 @@
+This is the first task from section 0.4
+
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/notes
+server->browser: response with html code
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: responds with the css file
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/main.js
+server->browser: responds with the js file
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/data.json initiated by js file
+serve-> browser: responds with the json data file
+browser-> server:http get https://studies.cs.helsinki.fi/favicon.ico
+server -> browser: responds with icon data
+
+// adds new note
+//form action executes post method to '/exampleapp/new_note'
+
+browser->server http post https://studies.cs.helsinki.fi/exampleapp/new_note whicg triggers 302 code for full reload
+// repeat the load
+
+//0.5 spa 
+
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/spa
+server->browser: response with html code
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: responds with the css file
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/main.js
+server->browser: responds with the js file
+browser->server: http get https://studies.cs.helsinki.fi/exampleapp/data.json
+server-> browser: responds with the json data file
+browser-> server:http get https://studies.cs.helsinki.fi/favicon.ico
+server -> browser: responds with icon data 
+
+ The main difference between the two is the difference in the js file and the form elements. The first version of this app uses an older technique or submitting the post 
+ through the form where the latter uses js. This is a faster way of doing so. The spa uses the js file to add to the json and also via dom manipulation change the html and add the new 
+ note to the page. 
+
+0.6 Create a diagram depicting the situation where the user creates a new note using the single page version of the app.
+
+1. user adds text in notes input and presses save.
+2. js file's onsubmit function first prevents the page reload default.
+3. Creates a new object with the input content and the date.
+4. Adds it to the notes variable.
+5. clears the input value.
+6. Calls the redraw notes function, which re prints the notes including the new note.
+7. Sends the notes including the new one to the server.  

@@ -25,3 +25,62 @@ Traditional web applications
 The homepage of the example application works like a traditional web application. When entering the page, the browser fetches the HTML document detailing the structure and the textual content of the page from the server.
 
 The server has formed this document somehow. The document can be a static text file saved into the server's directory. The server can also form the HTML documents dynamically according to the application code, using, for example, data from a database. The HTML code of the example application has been formed dynamically, because it contains information on the number of created notes.
+
+HTML forms
+
+the form tag is a container element like header or footer . It can been seen with the  action and method tags like so:
+
+<form  action='/my-handling-form-page' method='post'></form>
+
+The action attribute defines the location (URL) where the form's collected data should be sent when it is submitted.
+The method attribute defines which HTTP method to send the data with (usually get or post).
+
+<label> the label element represents a caption. it is good for accessibility screen readers will read out what the input is for. It also propgrammatically associates it with it too. 
+You can click the associated label to focus/activate the input, as well as the input itself. This increased hit area provides an advantage to anyone trying to activate the input, including those using a touch-screen device.
+To associate the <label> with an <input> element, you need to give the <input> an id attribute. The <label> then needs a for attribute whose value is the same as the input's id.
+
+Alternatively, you can nest the <input> directly inside the <label>, in which case the for and id attributes are not needed because the association is implicit.
+
+An exampl,e of a good form:
+<form action="/my-handling-form-page" method="post">
+ <ul>
+  <li>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="user_name">
+  </li>
+  <li>
+    <label for="mail">E-mail:</label>
+    <input type="email" id="mail" name="user_email">
+  </li>
+  <li>
+    <label for="msg">Message:</label>
+    <textarea id="msg" name="user_message"></textarea>
+  </li>
+ </ul>
+</form>
+
+On the <input> element, the most important attribute is the type attribute. This attribute is extremely important because it defines the way the <input> element appears and behaves. You'll find more about this in the Basic native form controls article later on.
+
+In our simple example, we use the value <input/text> for the first input — the default value for this attribute. It represents a basic single-line text field that accepts any kind of text input.
+For the second input, we use the value <input/email>, which defines a single-line text field that only accepts a well-formed e-mail address. This turns a basic text field into a kind of "intelligent" field that will perform some validation checks on the data typed by the user. It also causes a more appropriate keyboard layout for entering email addresses (e.g. with an @ symbol by default) to appear on devices with dynamic keyboards, like smartphones. You'll find out more about form validation in the client-side form validation article later on.
+Last but not least, note the syntax of <input> vs. <textarea></textarea>. This is one of the oddities of HTML. The <input> tag is an empty element, meaning that it doesn't need a closing tag. <textarea> is not an empty element, meaning it should be closed with the proper ending tag. This has an impact on a specific feature of forms: the way you define the default value. To define the default value of an <input> element you have to use the value attribute like this:
+
+<input type="text" value="by default this element is filled with this text">
+On the other hand,  if you want to define a default value for a <textarea>, you put it between the opening and closing tags of the <textarea> element, like this:
+<textarea>
+by default this element is filled with this text
+</textarea>
+
+the <button> element
+
+The markup for our form is almost complete; we just need to add a button to allow the user to send, or "submit", their data once they have filled out the form. This is done by using the <button> element; add the following just above the closing </ul> tag:
+
+<li class="button">
+  <button type="submit">Send your message</button>
+</li>
+
+The <button> element also accepts a type attribute — this accepts one of three values: submit, reset, or button.
+
+A click on a submit button (the default value) sends the form's data to the web page defined by the action attribute of the <form> element.
+A click on a reset button resets all the form widgets to their default value immediately. From a UX point of view, this is considered bad practice, so you should avoid using this type of button unless you really have a good reason to include one.
+A click on a button button does... nothing! That sounds silly, but it's amazingly useful for building custom buttons — you can define their chosen functionality with JavaScript.
