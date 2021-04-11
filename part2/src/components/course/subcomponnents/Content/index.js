@@ -4,9 +4,10 @@ import Total from "./subcomponents/total";
 const Content = ({course}) => {
     return ( 
     <>
-    <Part part={course.parts[0]} />
-      <Part part={course.parts[1]} />
-      <Part part={course.parts[2]} />
+    {course.parts.map((part)=>
+      <Part key={part.id} part={part}/>
+    )}
+    
       <Total parts={course.parts}/>
     </>
         );

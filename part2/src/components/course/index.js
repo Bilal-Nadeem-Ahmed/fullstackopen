@@ -1,29 +1,14 @@
 import Content from "./subcomponnents/Content"
 import Header from "./subcomponnents/header"
 
-const Course = () => {
-    const course = {
-      id: 1,
-        name: 'Half Stack application development',
-        parts: [
-          {
-            name: 'Fundamentals of React',
-            exercises: 10
-          },
-          {
-            name: 'Using props to pass data',
-            exercises: 7
-          },
-          {
-            name: 'State of a component',
-            exercises: 14
-          }
-        ]
-      }
+const Course = ({course}) => {
+ 
     return ( <>
-    <Header course={course}/>
-    <Content course={course}/>
-    </>);
+  
+      <Header key={course.name} course={course}/>
+      <Content key={course.id} course={course}/>
+    
+    </>)
 }
  
 export default Course;
