@@ -3,6 +3,7 @@ import Header from "./subcomponnents/header"
 
 const Course = () => {
     const course = {
+      id: 1,
         name: 'Half Stack application development',
         parts: [
           {
