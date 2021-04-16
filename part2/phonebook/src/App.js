@@ -5,19 +5,40 @@ function App() {
     { name: 'Arto Hellas' }
   ]) 
   const [ newName, setNewName ] = useState('')
+
+  const checkIfPresent=(obj,x)=>{
+    let arr=[]
+    for(let i=0;i<obj.length;i++) {
+      arr.push(obj[i].name)
+    }
+    if(arr.indexOf(x) !== -1){
+       return true
+      
+    }
+       
+  }
+  //  checkIfPresent(persons,'Arto Hellas') 
+  
   const handleClick=(e)=>{
+    
     e.preventDefault()
-    const per={ name: newName}
+
+    if(   checkIfPresent(persons,newName) ){
+      alert(`${newName} is already added to Phonebook`)
+      setNewName('')
+    } else {
+      const per={ name: newName}
     setPersons(persons.concat(per))
-    // console.log(persons)
     setNewName('')
+    }
+    
     
   }
   const handleChange=(e)=>{
-    // console.log(newName)
     setNewName(e.target.value)
 
   }
+
 
   return (
     <div>
