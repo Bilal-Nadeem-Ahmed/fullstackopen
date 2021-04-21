@@ -20,26 +20,16 @@ function App() {
     return item.name.indexOf(search) !== -1
   })
 
-  const returnVal=()=>{
-    if(filteredCountries.length >10){
-      return <p>Too many matches</p>
-    } else if(filteredCountries.length===1){
-      return <p>{filteredCountries[0]}</p>
-    } else {
-      filteredCountries.map(item=><p key={item.name}>{item.name}</p>)
-    }
-  }
-  
+ 
 
   return (
     <div className="App">
      
-        <Search
-        
-        setSearch={setSearch}/>
+      <Search
+       setSearch={setSearch}/>
 
-        {/* { filteredCountries.length>10? <p>Too many matches</p>: filteredCountries.map(item=><p key={item.name}>{item.name}</p>)} */}
-     <Display filteredCountries={filteredCountries}/>
+     <Display 
+     filteredCountries={filteredCountries}/>
     
     </div>
   );

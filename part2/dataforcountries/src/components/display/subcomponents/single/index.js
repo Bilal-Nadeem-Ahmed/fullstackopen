@@ -1,3 +1,5 @@
+import Weather from "./subcomponents/weather"
+
 const Single = ({selected}) => {
     return ( 
         <>
@@ -11,7 +13,7 @@ const Single = ({selected}) => {
           )}
           </ul>
           <img alt={selected.name} src={selected.flag}/>
-        
+           <Weather capital={selected.capital}/> 
 
         </>
      );
