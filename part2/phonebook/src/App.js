@@ -1,5 +1,6 @@
 import  { useState,useEffect } from 'react';
 import Filter from './Components/filter';
+import Message from './Components/message';
 import PersonForm from './Components/personForm';
 import Persons from './Components/persons';
 import server from './services/phonebook'
@@ -17,6 +18,7 @@ function App() {
   const [filterCriteria,setFilterCriteria] = useState('')
   const [filteredPerson,setFilteredPerson]=useState('')
   const [showFiltered, setShowFiltered]=useState(false)
+  const [errorMessage,setErrorMessage]=useState(null)
 
 
 
@@ -38,6 +40,12 @@ function App() {
       res=>{
         
         setPersons(persons.map(person=>person.id !==idOf[0].id ? person :res.data))
+        setErrorMessage(
+          ` ${newName}'s contact information was updated!`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
 
       }
     )
@@ -61,6 +69,12 @@ function App() {
         setPersons(persons.concat(res))
         setNewName('')
         setNewNumber('')
+        setErrorMessage(
+          `'${newName}' was added to the phonebook`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
       }
 
       )
@@ -104,6 +118,8 @@ function App() {
   return (
     <div>
     <h2>Phonebook</h2>
+    {errorMessage ? <Message message={errorMessage}/>:null}
+    
     <Filter filterCriteria={filterCriteria} handleChangeFilter={handleChangeFilter}/>
     
     <h3>Add a new</h3>
