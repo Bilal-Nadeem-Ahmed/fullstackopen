@@ -11,7 +11,7 @@ const create = newObj=>{
     return req.then(res=>res.data)
 }
 const remove = id =>{
-   const req= axios.delete(`http://localhost:3001/notes/${id}`)
+   const req= axios.delete(`http://localhost:3001/persons/${id}`)
    return req.then(res =>console.log(res))
 }
 

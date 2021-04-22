@@ -2,7 +2,6 @@ import  { useState,useEffect } from 'react';
 import Filter from './Components/filter';
 import PersonForm from './Components/personForm';
 import Persons from './Components/persons';
-import axios from 'axios'
 import server from './services/phonebook'
 function App() {
   console.log(server)
@@ -44,7 +43,6 @@ function App() {
     } else {
       const per={ name: newName,number :newNumber}
       server.create(per).then((res)=>{
-        console.log(res)
         setPersons(persons.concat(res))
         setNewName('')
         setNewNumber('')
@@ -97,7 +95,7 @@ function App() {
     <PersonForm newName={newName} handleChange={handleChange} newNumber={newNumber} handleChangeNumber={handleChangeNumber} handleClick={handleClick}/>
    
     <h2>Numbers</h2>
-    <Persons showFiltered={showFiltered} filteredPerson={filteredPerson} persons={persons}/>
+    <Persons showFiltered={showFiltered} filteredPerson={filteredPerson} setPersons={setPersons} persons={persons}/>
     
   </div>);
 
