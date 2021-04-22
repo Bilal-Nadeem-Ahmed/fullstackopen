@@ -4,7 +4,6 @@ import PersonForm from './Components/personForm';
 import Persons from './Components/persons';
 import server from './services/phonebook'
 function App() {
-  console.log(server)
   const [ persons, setPersons ] = useState([]) 
   useEffect(()=>{
     server.getAll()
@@ -32,14 +31,30 @@ function App() {
     }
        
   }
+  const handleupdate=(val)=>{
+    const idOf=persons.filter(item=>item.name===val)
+    const per={ name: newName,number :newNumber}
+    server.update(idOf[0].id,per).then(
+      res=>{
+        
+        setPersons(persons.map(person=>person.id !==idOf[0].id ? person :res.data))
+
+      }
+    )
+    console.log(idOf[0].id)
+    setNewName('')
+    setNewNumber('')
+
+  }
+
+  
   
   const handleClick=(e)=>{
     
     e.preventDefault()
 
     if(   checkIfPresent(persons,newName) ){
-      alert(`${newName} is already added to Phonebook`)
-      setNewName('')
+      window.confirm(`${newName} is already added to Phonebook, would you like to update`)?  handleupdate(newName) : setNewName('')
     } else {
       const per={ name: newName,number :newNumber}
       server.create(per).then((res)=>{

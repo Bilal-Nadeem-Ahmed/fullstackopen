@@ -15,4 +15,9 @@ const remove = id =>{
    return req.then(res =>console.log(res))
 }
 
-export default {getAll,create,remove}
+const update = (id,data) =>{
+    const req=axios.put(`http://localhost:3001/persons/${id}`,data)
+    return req.then(res=>res)
+}
+
+export default {getAll,create,remove,update}
