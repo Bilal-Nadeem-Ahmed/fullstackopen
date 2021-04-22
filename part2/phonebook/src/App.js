@@ -3,20 +3,17 @@ import Filter from './Components/filter';
 import PersonForm from './Components/personForm';
 import Persons from './Components/persons';
 import axios from 'axios'
+import server from './services/phonebook'
 function App() {
+  console.log(server)
   const [ persons, setPersons ] = useState([]) 
   useEffect(()=>{
-    axios.get('http://localhost:3001/persons')
-    .then(res=>setPersons(res.data))
+    server.getAll()
+    .then(people=>setPersons(people))
 
   },[])
   
-  // const [ persons, setPersons ] = useState([
-  //   { name: 'Arto Hellas', number: '07455483344' },
-  //   { name: 'Ada Lovelace', number: '39-44-5323523' },
-  //   { name: 'Dan Abramov', number: '12-43-234345' },
-  //   { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  // ]) 
+ 
   const [ newName, setNewName ] = useState('')
   const [newNumber,setNewNumber] = useState('')
   const [filterCriteria,setFilterCriteria] = useState('')
@@ -46,9 +43,15 @@ function App() {
       setNewName('')
     } else {
       const per={ name: newName,number :newNumber}
-    setPersons(persons.concat(per))
-    setNewName('')
-    setNewNumber('')
+      server.create(per).then((res)=>{
+        console.log(res)
+        setPersons(persons.concat(res))
+        setNewName('')
+        setNewNumber('')
+      }
+
+      )
+  
     }
     
     
