@@ -19,6 +19,7 @@ function App() {
   const [filteredPerson,setFilteredPerson]=useState('')
   const [showFiltered, setShowFiltered]=useState(false)
   const [errorMessage,setErrorMessage]=useState(null)
+  const [errorMessageType,setErrorMessageType]=useState('green')
 
 
 
@@ -40,15 +41,26 @@ function App() {
       res=>{
         
         setPersons(persons.map(person=>person.id !==idOf[0].id ? person :res.data))
+        setErrorMessageType('green')
         setErrorMessage(
           ` ${newName}'s contact information was updated!`
         )
         setTimeout(() => {
+          setErrorMessageType('green')
           setErrorMessage(null)
         }, 3000)
 
       }
-    )
+    ).catch(error=>{
+      setErrorMessageType('red')
+
+      setErrorMessage(
+        ` ${error} Error!`
+      )
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000)
+    })
     console.log(idOf[0].id)
     setNewName('')
     setNewNumber('')
@@ -118,7 +130,7 @@ function App() {
   return (
     <div>
     <h2>Phonebook</h2>
-    {errorMessage ? <Message message={errorMessage}/>:null}
+    {errorMessage ? <Message mstyle={errorMessageType} message={errorMessage}/>:null}
     
     <Filter filterCriteria={filterCriteria} handleChangeFilter={handleChangeFilter}/>
     
@@ -126,7 +138,7 @@ function App() {
     <PersonForm newName={newName} handleChange={handleChange} newNumber={newNumber} handleChangeNumber={handleChangeNumber} handleClick={handleClick}/>
    
     <h2>Numbers</h2>
-    <Persons showFiltered={showFiltered} filteredPerson={filteredPerson} setPersons={setPersons} persons={persons}/>
+    <Persons showFiltered={showFiltered} filteredPerson={filteredPerson} setErrorMessageType={setErrorMessageType} setErrorMessage={setErrorMessage} setPersons={setPersons} persons={persons}/>
     
   </div>);
 

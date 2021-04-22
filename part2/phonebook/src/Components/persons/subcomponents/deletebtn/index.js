@@ -1,11 +1,19 @@
 import server from '../../../../services/phonebook'
-const DeleteButton = ({id, persons,setPersons}) => {
+const DeleteButton = ({id, persons,setPersons,setErrorMessage,setErrorMessageType}) => {
 
     const confirmDelete=()=>{
         server.remove(id).then(res=>{
             
             setPersons(persons.filter(per=> per.id!== id))
             console.log('person actually deleted')
+        }).catch(err=>{
+            setErrorMessageType('red')
+            setErrorMessage(`Error, this person has already been Deleted`)
+            setPersons(persons.filter(per=> per.id!== id))
+
+            setTimeout(() => {
+                setErrorMessage(null)
+              }, 3000)
         })
 
     }

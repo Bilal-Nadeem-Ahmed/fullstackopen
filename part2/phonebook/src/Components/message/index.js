@@ -1,8 +1,8 @@
-const Message = ({message}) => {
+const Message = ({message,mstyle}) => {
     
     const style ={
        
-            color: 'green',
+            color: `${mstyle}`,
             background: 'lightgrey',
             fontSize: 20,
             borderStyle: 'solid',
