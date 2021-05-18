@@ -5,7 +5,8 @@ const DeleteButton = ({id, persons,setPersons,setErrorMessage,setErrorMessageTyp
         server.remove(id).then(res=>{
             
             setPersons(persons.filter(per=> per.id!== id))
-            console.log('person actually deleted')
+            setErrorMessageType('green')
+            setErrorMessage(`This person has been Deleted`)
         }).catch(err=>{
             setErrorMessageType('red')
             setErrorMessage(`Error, this person has already been Deleted`)
