@@ -20,16 +20,18 @@ app.use(cors())
 app.get('/api/persons',(request,response)=>{
     Person.find({}).then(person=>{
         response.json(person)
-    })
+        
+    }).catch(err=>console.log(err))
 })
 
 app.get('/info',(request,response)=>{
-    response.send(`<p> Phonebook has info for ${persons.length} people</p>
+        
+    response.send(`<p> Phonebook has info for ${Person.length} people</p>
     <p>${new Date()}</p>`)
 })
 app.get('/api/persons/:id',(request,response,next)=>{
     
-    Person.findById(request.params,id)
+    Person.findById(request.params.id)
     .then(person=>{
         if(person){
             response.json(person)

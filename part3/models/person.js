@@ -1,13 +1,11 @@
 const mongoose = require('mongoose')
 
-
-
 const url = process.env.MONGODB_URI
 
 console.log(`connected to ${url}`)
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
-.then(retult=>{
+.then(result=>{
     console.log(`connected to Mongodb`)
 })
 .catch((error)=>{
