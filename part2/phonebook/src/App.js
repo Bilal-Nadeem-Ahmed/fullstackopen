@@ -89,7 +89,21 @@ function App() {
         }, 3000)
       }
 
-      )
+      ).catch(err=>{
+        setNewName('')
+        setNewNumber('')
+        
+        setErrorMessageType('red')
+
+        setErrorMessage(
+          ` ${err.response.data.error} `
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+        
+        
+        })
   
     }
     
