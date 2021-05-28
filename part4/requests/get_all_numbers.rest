@@ -1,15 +1,15 @@
 
 
 ###
-GET http://localhost:3002/api/blogs
+GET http://localhost:3003/api/blogs
 
 ###
-POST   http://localhost:3002/api/blogs
+POST   http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title" : "bilal",
+    "title" : "bilasdasal",
     "author": "asd",
     "url": "hjlkjsagdjhaksgdal",
-    "likes": 1
+    "likes": 5
 }
