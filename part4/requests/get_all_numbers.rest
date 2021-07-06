@@ -1,7 +1,7 @@
 
-
+DELETE  http://localhost:3001/api/blogs/60e37d80f0b448d25c53dab8
 ###
-GET http://localhost:3003/api/blogs
+GET http://localhost:3001/api/blogs
 
 ###
 POST   http://localhost:3001/api/blogs
@@ -12,10 +12,8 @@ Content-Type: application/json
     "author": "asd",
     "url": "hjlkjsagdjhaksgdal",
     "likes": 5
-}
-###
-POST 'mongodb+srv://user1:MangoYogurt1@cluster0.yaoc2.mongodb.net/bloglist-test?retryWrites=true&w=majority'
-Content-Type: application/json
+},
+
 
 {
         
