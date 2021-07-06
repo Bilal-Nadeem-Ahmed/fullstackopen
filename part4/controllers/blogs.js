@@ -31,11 +31,19 @@ blogRouter.post('/', (request, response) => {
   //   url: body.url,
   //   likes: body.likes
   // })
-  blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
-    })
+
+
+  if (request.body.title && request.body.author){
+    blog
+      .save()
+      .then(result => {
+        response.status(201).json(result)
+      })
+  }
+  else{
+    response.status(400).end()
+  }
+
 })
 
 blogRouter.delete('/:id', async (request, response) => {

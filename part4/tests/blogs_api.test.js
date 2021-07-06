@@ -75,6 +75,20 @@ test('a blog with no likes property is assigned 0 by default', async () => {
   expect(blogsAtEnd[blogsAtEnd.length-1].title).toBe('i have no likes')
 })
 
+test('if a blog is added without title and author it will give a status code of 400 can not be added', async () => {
+  const newBlog = {
+    'url': 'https://bilalahmed.co.uk/',
+
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+
+})
+
+
 afterAll(() => {
   mongoose.connection.close()
 })
