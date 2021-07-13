@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const uniqueValidator = require('mongo-unique-validator')
 
 const password = process.argv[2]
 const name= process.argv[3]
@@ -10,11 +10,12 @@ const url =
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
-const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+const personSchema = mongoose.Schema({
+  name: { type:String, required: true, unique:true},
+  number: { type:String, required: true, unique:true},
   
 })
+personSchema.plugin(uniqueValidator)
 
 const Person = mongoose.model('Person', personSchema)
 

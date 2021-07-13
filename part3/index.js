@@ -4,6 +4,9 @@ const { request, response } = require('express')
 const express= require('express')
 const app = express()
 app.use(express.json())
+
+app.use(express.static('build'))
+
 const morgan=require('morgan')
 const Person=require('./models/person')
 
@@ -55,18 +58,13 @@ app.delete('/api/persons/:id',(request,response, next)=>{
 
 
 
-app.post('/api/persons',(request,response)=>{
+app.post('/api/persons',(request,response,next)=>{
 
     const body = request.body
-    // if(persons.find(person=>person.name === body.name)){
-    //     return response.status(400).json({error:'name is already present'})
-
-    // } else if(!body.name || !body.number){
-    //     return response.status(400).json({error:'name or number missing'})
-    // }
+  
     if(body.name === undefined){
         return response.status(400).json({error:'name missing'})
-    }
+    } 
     const person = new Person ({
         name: body.name,
         number: body.number 
@@ -74,7 +72,15 @@ app.post('/api/persons',(request,response)=>{
 
     person.save().then(savedPerson=>{
         response.json(savedPerson)
-    })
+    }).catch(error=>{
+        if(error.name==='ValidationError'){
+           return response.status(400).json({error: 'name or number too short'})
+        }else {
+            console.log(error)
+        }
+      
+    }) 
+       
   
 })
 app.put('/api/persons/:id',(request,response,next)=>{
