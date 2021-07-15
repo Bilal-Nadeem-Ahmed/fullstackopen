@@ -1,18 +1,20 @@
 
-DELETE  http://localhost:3001/api/blogs/60e37d80f0b448d25c53dab8
+DELETE  http://localhost:3001/api/blogs/60b01f61fecc28f1cd572031
 ###
-GET http://localhost:3001/api/blogs
-
+GET http://localhost:3001/api/blogs/users
 ###
-POST   http://localhost:3001/api/blogs
+POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "title" : "bilasdasal",
-    "author": "asd",
-    "url": "hjlkjsagdjhaksgdal",
-    "likes": 5
-},
+     "username": "Bilal",
+      "name": "yMatti dLuukkainen",
+      "password": "salainen"
+
+    }
+###
+PUT   http://localhost:3001/api/blogs/60b01f6cfecc28f1cd572032
+Content-Type: application/json
 
 
 {
@@ -20,7 +22,7 @@ Content-Type: application/json
        "title": "React patterns",
         "author": "Michael Chan",
         "url": "https://reactpatterns.com/",
-        "likes": 7
+        "likes": 8
         
     }
     
