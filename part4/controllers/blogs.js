@@ -1,12 +1,12 @@
 const blogRouter = require('express').Router()
 const Blog = require('../models/blog')
+const User = require('../models/user')
 
-blogRouter.get('/', (request, response) => {
-  Blog
-    .find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
+blogRouter.get('/', async (request, response) => {
+  const blogs=await  Blog.find({}).populate('user', { username: 1, name: 1 })
+
+  response.json(blogs)
+
 
 })
 
@@ -21,28 +21,40 @@ blogRouter.get('/:id', async (request, response) => {
 
 })
 
-blogRouter.post('/', (request, response) => {
-  const blog = new Blog(request.body)
+blogRouter.post('/', async (request, response) => {
+  const body = request.body
 
-  // const body = request.body
-  // const blog = new Blog({
-  //     title: body.title,
-  //   author: body.author,
-  //   url: body.url,
-  //   likes: body.likes
-  // })
+  const user = await User.findById(body.userId)
 
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+    user:user._id
+  })
 
-  if (request.body.title && request.body.author){
-    blog
-      .save()
-      .then(result => {
-        response.status(201).json(result)
-      })
+  if(!body.title||!body.author){
+    return response.status(400).json({ error:'missing title or author' }).end()
   }
-  else{
-    response.status(400).end()
-  }
+
+  const savedBlog = await blog.save()
+  user.blogs = user.blogs.concat(savedBlog._id)
+  await user.save()
+  response.json(savedBlog)
+
+  // if (request.body.title && request.body.author){
+
+
+  //   const savedBlog = await blog.save()  .then(result => {
+  //     response.status(201).json(result)
+  //   })
+  //   user.notes = user.notes.concat(savedBlog._id)
+  //   await user.save()
+  // }
+  // else{
+  //   response.status(400).end()
+  // }
 
 })
 
