@@ -7,24 +7,34 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-     "username": "Bilala",
-      "name": "yMatti dLuukkainen",
-      "password": "salainen"
+     "username": "hbew",
+      "name": "yMatti dLuukkainewn",
+      "password": "saewq"
 
     }
 ###
 POST   http://localhost:3001/api/blogs/
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhiZXciLCJpZCI6IjYwZjAzZWY4MzJkMzBhNTYxYjVkNDg3OSIsImlhdCI6MTYyNjM1Nzc1NiwiZXhwIjoxNjI2MzYxMzU2fQ.enosA2ESrH-xuhoQ6yNadA-vWSOLT9h29wl0Z4HlV6c
 
 
 {
         
-        "title": "'Type wars'",
-         "author": "'Robert C. Martin'",
-       "url": "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-         "likes": 2,
-        "userId":"60f02087e7c8a6337fb13050"
+        "title": "'Type warewers'",
+         "author": "'Robert Cwerw. Martin'",
+       "url": "http://blog.cleancwerweoder.com/uncle-bob/2016/05/01/TypeWars.html",
+         "likes": 2
+       
         
+    }
+###
+    POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+     "username": "hbew",
+      "password": "saewq"
+
     }
     
     
