@@ -33,61 +33,6 @@ test('check that the id property is correctly defined', async() => {
   expect(firstBlogsId).toBeDefined()
 })
 
-test('a blog can be added', async () => {
-  const newBlog = {
-    'title': 'a simple guide',
-    'author': 'Bilal Ahmed',
-    'url': 'https://asimpleguide.dev/',
-    'likes': 5
-  }
-
-  await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(201)
-    .expect('Content-Type', /application\/json/)
-
-  const blogsAtEnd = await helper.blogsInDb()
-  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1)
-
-  const contents = blogsAtEnd.map(r => r.title)
-
-
-  expect(contents).toContain('a simple guide')
-})
-
-test('a blog with no likes property is assigned 0 by default', async () => {
-  const newBlog = {
-    'title': 'i have no likes',
-    'author': 'Bilal Ahmed',
-    'url': 'https://asimpleguide.dev/',
-
-  }
-
-  await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(201)
-    .expect('Content-Type', /application\/json/)
-
-  const blogsAtEnd = await helper.blogsInDb()
-  expect(blogsAtEnd[blogsAtEnd.length-1].likes).toBe(0)
-  expect(blogsAtEnd[blogsAtEnd.length-1].title).toBe('i have no likes')
-})
-
-test('if a blog is added without title and author it will give a status code of 400 can not be added', async () => {
-  const newBlog = {
-    'url': 'https://bilalahmed.co.uk/',
-
-  }
-
-  await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(400)
-
-})
-
 
 afterAll(() => {
   mongoose.connection.close()

@@ -29,7 +29,6 @@ app.use('/api/login', loginRouter)
 
 app.use(middleware.requestLogger)
 app.use('/api/users',usersRouter)
-app.use(middleware.userExtractor)
 app.use('/api/blogs',blogRouter)
 
 
