@@ -1,22 +1,22 @@
 
-DELETE  http://localhost:3001/api/blogs/60f077f937cadbb7fd606f62
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhiZXciLCJpZCI6IjYwZjAzZWY4MzJkMzBhNTYxYjVkNDg3OSIsImlhdCI6MTYyNjM3MTMwMCwiZXhwIjoxNjI2Mzc0OTAwfQ.FrnoN0UILxn94GzSz534QyJ8JLgEYEuIYeAiopjPutk
+DELETE  http://localhost:3001/api/blogs/60f07a244fba1fc03f2ee760
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhiZXciLCJpZCI6IjYwZjAzZWY4MzJkMzBhNTYxYjVkNDg3OSIsImlhdCI6MTYyNjM3MzA5OCwiZXhwIjoxNjI2Mzc2Njk4fQ._VtgM0EwDzvcfXByRDwyloMrNLNPnReYW6zFgcXc_H8
 ###
-GET http://localhost:3001/api/users /
+GET http://localhost:3000/api/users/ 
 ###
-POST http://localhost:3001/api/users
+POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-     "username": "hbew",
-      "name": "yMatti dLuukkainewn",
-      "password": "saewq"
+     "username": "ddsas",
+      "name": "yMattewei dLuukkakjhinewn",
+      "password": "saewkjq"
 
     }
 ###
 POST   http://localhost:3001/api/blogs/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhiZXciLCJpZCI6IjYwZjAzZWY4MzJkMzBhNTYxYjVkNDg3OSIsImlhdCI6MTYyNjM3MTMwMCwiZXhwIjoxNjI2Mzc0OTAwfQ.FrnoN0UILxn94GzSz534QyJ8JLgEYEuIYeAiopjPutk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhiZXciLCJpZCI6IjYwZjAzZWY4MzJkMzBhNTYxYjVkNDg3OSIsImlhdCI6MTYyNjM3MjU5MywiZXhwIjoxNjI2Mzc2MTkzfQ.wqZl96JFiaAX90Z_DakX1a_pe_sl1DAA_oe9oYh87vA
 
 {
         

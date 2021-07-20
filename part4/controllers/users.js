@@ -19,6 +19,14 @@ usersRouter.post('/', async (request, response) => {
     name: body.name,
     passwordHash,
   })
+  const users = await User.find({})
+  const userslist = users.map(item => item.username)
+  const isDuplicate = userslist.indexOf(body.username)
+  if(isDuplicate>1){
+    return response.status(401).json({
+      error: 'the username already exists'
+    })
+  }
 
   const savedUser = await user.save()
 
