@@ -28,7 +28,7 @@ const LoginForm = ({setErrorMessage,setUser}) => {
             setErrorMessage(null)
           },5000)
         }
-        console.log('logging in with', username,password)
+        console.log('logging in with', username)
       }
 
     return ( 
