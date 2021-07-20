@@ -39,7 +39,7 @@ const App = () => {
 
       {!user
       ? <LoginForm setUser={setUser} user={user} setErrorMessage={setErrorMessage}/> 
-      : <BlogForm blogs={blogs} setBlogs={setBlogs}/> }
+      : <BlogForm setErrorMessage={setErrorMessage} blogs={blogs} setBlogs={setBlogs}/> }
       
       
       {user && blogs.map(blog =>

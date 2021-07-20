@@ -1,18 +1,18 @@
 import blogService from '../services/blogs'
 import { useState } from 'react'
-const BlogForm = ({blogs,setBlogs}) => {
+const BlogForm = ({blogs,setBlogs,setErrorMessage}) => {
 const [newTitle,setNewTitle]=useState('')
 const [newAuthor,setNewAuthor]=useState('')
 const [newUrl,setNewUrl]=useState('')
-const [newLikes,setNewLikes]=useState(0)
+
   const addBlog = (event) =>{
     event.preventDefault()
 
     const blogObject = {
       title:newTitle,
       author:newAuthor,
-      url:newUrl,
-      likes:newLikes
+      url:newUrl
+      
      
     }
     blogService.create(blogObject)
@@ -21,7 +21,10 @@ const [newLikes,setNewLikes]=useState(0)
         setNewTitle('')
         setNewAuthor('')
         setNewUrl('')
-        setNewLikes()
+        setErrorMessage('Note Added !')
+          setTimeout(()=>{
+            setErrorMessage(null)
+          },5000)
       })
    
   }
@@ -63,16 +66,7 @@ const [newLikes,setNewLikes]=useState(0)
               }
           />
           </div>
-          <div>
-                Likes
-              <input
-              value={newLikes}
-              name = 'likes'
-              onChange={
-                (e)=>{handleChange(e,setNewLikes)}
-              }
-          />
-          </div>
+         
                           
          <button type="submit">save</button>
       </form>  
