@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
 import blogService from './services/blogs'
 import Notification from './components/Notification'
+import SignOut from './components/signOut'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -32,13 +33,16 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
+      
       <Notification errorMessage={errorMessage}/>
+      {user? <SignOut setUser={setUser}/> :null}
+
       {!user
       ? <LoginForm setUser={setUser} user={user} setErrorMessage={setErrorMessage}/> 
       : <BlogForm blogs={blogs} setBlogs={setBlogs}/> }
       
       
-      {blogs.map(blog =>
+      {user && blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
     </div>
